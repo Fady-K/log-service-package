@@ -1,6 +1,5 @@
 ﻿using System;
-using LogService.Enums;
-
+	
 namespace LogService.Formatting.FormattingStrategies
 { 
 	public class FormatingLogMessageStrategy : IFormateStrategy
@@ -22,10 +21,6 @@ namespace LogService.Formatting.FormattingStrategies
 					// Append to restul
 					result += FormateDateTime(dateTime) + _sep;
 				}
-				else if (item is MessageType msType)
-				{
-					result += $"[{msType}]" + _sep;
-				}
 				else
 				{
 					result += item.ToString() + _sep;
@@ -37,13 +32,6 @@ namespace LogService.Formatting.FormattingStrategies
 			{
 				// Add it to the begginge of the restul
 				result = FormateDateTime(DateTime.Now) + _sep + result;
-			}
-
-
-			// Iterate over them and join then finally return result
-			foreach (var item in param)
-			{
-				result += (item.ToString() + _sep);
 			}
 
 			// Return result trimmed
