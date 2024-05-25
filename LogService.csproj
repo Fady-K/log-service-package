@@ -52,10 +52,8 @@
     <Compile Include="LogService\LogService.Core\Logger.cs" />
     <Compile Include="LogService\LogService.Core\LoggingService.cs" />
     <Compile Include="LogService\LogService.Core\LogStartegies\AccumulativeMessageBasedThresholdLoggingStrategy.cs" />
-    <Compile Include="LogService\LogService.Core\LogStartegies\DefaultLogStrategy.cs" />
     <Compile Include="LogService\LogService.Core\LogStartegies\ILogStrategy.cs" />
     <Compile Include="LogService\LogService.Core\LogStartegies\InstanteMessageLoggingStrategy.cs" />
-    <Compile Include="LogService\LogService.Enums\MessageType.cs" />
     <Compile Include="LogService\LogService.FileHandling\AbstractFileHandler.cs" />
     <Compile Include="LogService\LogService.FileHandling\LogFileHandler.cs" />
     <Compile Include="LogService\LogService.Formatting\Formatting.Core\AbstractFormatter.cs" />
