@@ -37,7 +37,7 @@ Before you start using `LogService` in your project, make sure you have the foll
    - This assembly is a system DLL that comes with .NET and provides access to configuration settings.
    - You can add this reference via the 'Add Reference' dialog in your development environment.
 
-By meeting these prerequisites, you'll be ready to integrate and configure `LogService` seamlessly. If you have any further questions or need additional assistance, feel free to ask! 😊
+By meeting these prerequisites, you'll be ready to integrate and configure `LogService` seamlessly 😊
 
 ## Installation
 1. Download the `LogService` package.
