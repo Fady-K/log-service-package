@@ -98,23 +98,44 @@ The `LoggingService` class serves as the core of the logging system. It follows 
 The `AbstractLogger` class is an abstract base class that provides common functionality for all logger classes in the application. It implements the Strategy design pattern, allowing different logging behaviors to be used interchangeably. The `AbstractLogger` class defines methods for logging messages and manages the interaction between log strategies and formatters.
 
 #### Logger
-
 The `Logger` class extends the `AbstractLogger` class and provides concrete implementation for logging messages. It allows developers to specify the desired log strategy and formatter during initialization, enabling customization of logging behavior based on specific requirements. Instances of the `Logger` class can be used independently to log messages or as part of the `LoggingService` infrastructure.
 
 #### Log Strategy
-
 Log strategies determine how and where log messages are handled within the logging system. The `ILogStrategy` interface defines the structure for different logging strategies, such as instant logging or accumulation-based logging. Concrete implementations of log strategies, such as `InstanteMessageLoggingStrategy` and `AccumulativeMessageBasedThresholdLoggingStrategy`, provide specific logic for logging messages instantly or accumulating them until a threshold is reached before flushing to a file.
 
 ## Configuration
-`LogService` uses the `app.config` file for its configuration. Here’s an example of what the `app.config` file might include:
+`LogService` is a logging library that uses the `app.config` file for its configuration. Below, you'll find an example of how to set up the `app.config` file to configure `LogService` in your project.
+
+### Configuration Settings
+In your `app.config` file, make sure you have an `<appSettings>` section. Add the following key-value pairs under it:
+
+1. **`log_file_path`**: This key specifies the path where the log file will be stored. You can customize this path according to your project's requirements. For example:
+
+    ```xml
+    <appSettings>
+        <add key="log_file_path" value="./Log/Log.txt"/>
+    </appSettings>
+    ```
+
+    Make sure to adjust the value to the desired log file path.
+
+2. **`log_file_default_path`**: This key should remain unchanged. It specifies the default log file path. Keep it as follows:
+
+    ```xml
+    <appSettings>
+        <add key="log_file_default_path" value="./Log/Log.txt"/>
+    </appSettings>
+    ```
+    
+Below is an example of how the `<appSettings>` section in your `app.config` file might look:
 
 ```xml
 <configuration>
   <appSettings>
-    <add key="LogFilePath" value="C:\Logs\app.log"/>
-    <add key="LogLevel" value="Info"/>
+    <!-- Customize the log file path -->
+    <add key="log_file_path" value="./Log/Log.txt"/>
+    <!-- Keep the default log file path unchanged -->
+    <add key="log_file_default_path" value="./Log/Log.txt"/>
     <!-- Add other configuration settings as needed -->
   </appSettings>
 </configuration>
-```
-
