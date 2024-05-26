@@ -72,9 +72,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Diagrams\class digram\LogService.drawio" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Diagrams\class digram\LogService.drawio.png" />
+    <Content Include="Diagrams\Package_Structure\package_structure.txt" />
     <Content Include="package-icon.ico" />
     <Content Include="Resources\log-list-2-128.ico" />
   </ItemGroup>
