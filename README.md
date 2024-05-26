@@ -11,16 +11,16 @@
 - [Author](#author)
 - [License](#license)
   
-### Prerequisites
+## Prerequisites
 
 - .NET Framework
 
-### Installation
+## Installation
 
 1. Download the `LogService` package.
 2. Add a reference to the `LogService.dll` in your project.
 
-### Usage
+## Usage
 
 Here's a basic example of how to use `LogService`:
 
