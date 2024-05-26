@@ -33,10 +33,10 @@ Here's a basic example of how to use `LogService`:
 
 ```csharp
 // By LogService singleton
-LoggingService.GetInstance().Log();
+LoggingService.GetInstance().Log(DateTime.Now, MessageType, "This is a log message");
 
 // By instanciating from Logger class
 var logger = new Logger(new InstanteMessageLoggingStrategy("path_to_log_file"), new LogMessageFormatter());
 
 // Log a message
-logger.Log("This is a log message", MessageType.Info);
+logger.Log("This is a log message", "Info", "etc");
