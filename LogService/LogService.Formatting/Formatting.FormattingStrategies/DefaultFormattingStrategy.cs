@@ -1,10 +1,10 @@
 ﻿namespace LogService.Formatting.FormattingStrategies
 {
-	// <summary>
+	/// <summary>
 	/// The DefaultFormattingStrategy class provides a default implementation of the IFormateStrategy interface.
 	/// It formats log messages by appending each parameter to a string, separated by a specified separator.
 	/// </summary>
-	/// <seealso cref="IFormateStrategy"/>
+	/// <seealso cref="IFormateStrategy" />
 	public class DefaultFormattingStrategy : IFormateStrategy
 	{
 		/* Insatnce attributes */
