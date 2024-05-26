@@ -1,4 +1,4 @@
-# LogService
+# log-service-package
 
 ## Description
 
