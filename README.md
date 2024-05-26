@@ -61,12 +61,12 @@ logger.Log("This is a log message", "Info", "Additional context if needed");
 `LogService` is designed with flexibility and extensibility in mind, utilizing various components to meet diverse logging requirements.
 
 ### Diagrams
-<details>
+<details open>
 <summary>Class diagram</summary>
 <img src="./Diagrams/class digram/LogService.drawio.png" alt="Alt Text">
 </details>
 
-<details>
+<details open>
 <summary>Package components tree</summary>
 <pre>
 +---LogService.Core
