@@ -104,7 +104,7 @@ The `Logger` class extends the `AbstractLogger` class and provides concrete impl
 Log strategies determine how and where log messages are handled within the logging system. The `ILogStrategy` interface defines the structure for different logging strategies, such as instant logging or accumulation-based logging. Concrete implementations of log strategies, such as `InstanteMessageLoggingStrategy` and `AccumulativeMessageBasedThresholdLoggingStrategy`, provide specific logic for logging messages instantly or accumulating them until a threshold is reached before flushing to a file.
 
 ## Configuration
-`LogService` is a logging library that uses the `app.config` file for its configuration. Below, you'll find an example of how to set up the `app.config` file to configure `LogService` in your project.
+`LogService` uses the `app.config` file for its configuration, so make sure that your project includes an `app.config` file. Below, you'll find an example of how to set up the `app.config` file to configure `LogService` in your project.
 
 ### Configuration Settings
 In your `app.config` file, make sure you have an `<appSettings>` section. Add the following key-value pairs under it:
