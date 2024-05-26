@@ -7,13 +7,13 @@ namespace LogService.Validation.Factories
 	{
 		public static IValidationStrategy Create(ValidationStartegyType strategyType)
 		{
-			if (strategyType.Equals(ValidationStartegyType.DownloadPathValidation))
+			if (strategyType.Equals(ValidationStartegyType.LogFilePathValidation))
 			{
-				return null;
+				return new LogFilePathValidationStrategy();
 			}
-			else if (strategyType.Equals(ValidationStartegyType.YoutubeURLValidation))
+			else if (strategyType.Equals(ValidationStartegyType.LogFilePathWithoutExceptionsValidation))
 			{
-				return null;
+				return new LogFilePathWithoutExceptionsValidationStrategy();
 			}
 			else
 			{
