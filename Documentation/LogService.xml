@@ -1,0 +1,784 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>LogService</name>
+    </assembly>
+    <members>
+        <member name="T:LogService.Core.AbstractLogger">
+            <summary>
+            The AbstractLogger class.
+            This is an abstract base class for all logger classes in the application.
+            It provides common functionality for logging messages, including formatting and flushing logs.
+            </summary>
+            <remarks>
+            This class uses the Strategy design pattern to allow different logging and formatting behaviors to be used interchangeably.
+            </remarks>
+            <seealso cref="T:LogService.Core.LogStrategies.ILogStrategy"/>
+            <seealso cref="T:LogService.Formatting.Core.AbstractFormatter"/>
+        </member>
+        <member name="F:LogService.Core.AbstractLogger._logStrategy">
+            <summary>
+            The log strategy used by this logger.
+            This determines how log messages are handled (e.g., how and when they are written to a log file or other storage).
+            </summary>
+            <seealso cref="T:LogService.Core.LogStrategies.ILogStrategy"/>
+        </member>
+        <member name="F:LogService.Core.AbstractLogger._formatter">
+            <summary>
+            The formatter used by this logger.
+            This determines how log messages are formatted before they are logged.
+            </summary>
+            <seealso cref="T:LogService.Formatting.Core.AbstractFormatter"/>
+        </member>
+        <member name="M:LogService.Core.AbstractLogger.#ctor">
+            <summary>
+            Default constructor.
+            Initializes a new instance of the AbstractLogger class with a default log message formatter.
+            </summary>
+        </member>
+        <member name="M:LogService.Core.AbstractLogger.#ctor(LogService.Core.LogStrategies.ILogStrategy,LogService.Formatting.Core.AbstractFormatter)">
+            <summary>
+            Constructor with parameters.
+            Initializes a new instance of the AbstractLogger class with the specified log strategy and formatter.
+            </summary>
+            <param name="logStrategy">The log strategy to use.</param>
+            <param name="formatter">The formatter to use.</param>
+        </member>
+        <member name="P:LogService.Core.AbstractLogger.LogStrategy">
+            <summary>
+            Gets or sets the log strategy used by this logger.
+            </summary>
+        </member>
+        <member name="P:LogService.Core.AbstractLogger.Formatter">
+            <summary>
+            Gets or sets the formatter used by this logger.
+            </summary>
+        </member>
+        <member name="M:LogService.Core.AbstractLogger.Log(System.Object[])">
+            <summary>
+            Logs a series of objects.
+            The objects are formatted into a single message and then logged using the current log strategy.
+            </summary>
+            <param name="logContent">The objects to log.</param>
+            <seealso cref="M:LogService.Core.LogStrategies.ILogStrategy.Log(System.String)"/>
+            <seealso cref="M:LogService.Formatting.Core.AbstractFormatter.Formate(System.Object[])"/>
+        </member>
+        <member name="T:LogService.Core.Logger">
+            <summary>
+            The Logger class provides logging functionality and is responsible for logging messages.
+            It inherits from the AbstractLogger class.
+            </summary>
+        </member>
+        <member name="M:LogService.Core.Logger.#ctor(LogService.Core.LogStrategies.ILogStrategy,LogService.Formatting.Core.AbstractFormatter)">
+            <summary>
+            Initializes a new instance of the Logger class with the specified log strategy and formatter.
+            </summary>
+            <param name="logStartegy">The log strategy to be used by this Logger instance.</param>
+            <param name="formatter">The formatter to be used by this Logger instance.</param>
+        </member>
+        <member name="T:LogService.Core.LoggingService">
+            <summary>
+            The LoggingService class.
+            This class is responsible for logging messages. It uses an AbstractLogger for logging and an AbstractFileHandler for file handling.
+            </summary>
+            <remarks>
+            This class follows the Singleton design pattern to ensure that only one instance of LoggingService exists in the application.
+            </remarks>
+            <seealso cref="T:LogService.Core.AbstractLogger"/>
+            <seealso cref="T:LogService.FileHandling.AbstractFileHandler"/>
+        </member>
+        <member name="F:LogService.Core.LoggingService._instance">
+            <summary>
+            The single instance of the LoggingService class.
+            </summary>
+        </member>
+        <member name="F:LogService.Core.LoggingService._logFilePath">
+            <summary>
+            The path of the log file.
+            </summary>
+        </member>
+        <member name="F:LogService.Core.LoggingService._defaultLogFilePath">
+            <summary>
+            The default path of the log file.
+            </summary>
+        </member>
+        <member name="F:LogService.Core.LoggingService._logger">
+            <summary>
+            The logger used by this service.
+            </summary>
+        </member>
+        <member name="F:LogService.Core.LoggingService._fileHandler">
+            <summary>
+            The file handler used by this service.
+            </summary>
+        </member>
+        <member name="M:LogService.Core.LoggingService.#ctor">
+            <summary>
+            Default constructor.
+            Initializes a new instance of the LoggingService class and sets up the logger and file handler.
+            </summary>
+        </member>
+        <member name="P:LogService.Core.LoggingService.LogFilePath">
+            <summary>
+            Gets the path of the log file.
+            </summary>
+        </member>
+        <member name="P:LogService.Core.LoggingService.DefaultLogFilePath">
+            <summary>
+            Gets the default path of the log file.
+            </summary>
+        </member>
+        <member name="P:LogService.Core.LoggingService.Logger">
+            <summary>
+            Gets or sets the logger used by this service.
+            </summary>
+        </member>
+        <member name="P:LogService.Core.LoggingService.FileHandler">
+            <summary>
+            Gets the file handler used by this service.
+            </summary>
+        </member>
+        <member name="M:LogService.Core.LoggingService.Log(System.Object[])">
+            <summary>
+            Logs a series of objects.
+            </summary>
+            <param name="messageComponents">The objects to log.</param>
+            <exception cref="T:System.Exception">Throws an exception if an error occurs while logging the message.</exception>
+        </member>
+        <member name="M:LogService.Core.LoggingService.GetIntance">
+            <summary>
+            Gets the single instance of the LoggingService class.
+            </summary>
+            <returns>The single instance of the LoggingService class.</returns>
+        </member>
+        <member name="M:LogService.Core.LoggingService.Initialize">
+            <summary>
+            Initializes the LoggingService instance.
+            </summary>
+            <exception cref="T:System.Exception">Throws an exception if an error occurs while initializing the instance.</exception>
+        </member>
+        <member name="T:LogService.Core.LogStrategies.AccumulativeMessageBasedThresholdLoggingStrategy">
+            <summary>
+            The AccumulativeMessageBasedThresholdLoggingStrategy class provides an implementation of the ILogStrategy interface.
+            It accumulates log messages and writes them to a log file when the system is closed or when the number of log messages reaches a specified threshold.
+            </summary>
+            <remarks>
+            This class implements the ILogStrategy interface and provides a log strategy that logs the accumulated message when the system is closed.
+            </remarks>
+            <seealso cref="T:LogService.Core.LogStrategies.ILogStrategy"/>
+        </member>
+        <member name="F:LogService.Core.LogStrategies.AccumulativeMessageBasedThresholdLoggingStrategy._validLogFilePath">
+            <summary>
+            The valid path to the log file.
+            </summary>
+        </member>
+        <member name="F:LogService.Core.LogStrategies.AccumulativeMessageBasedThresholdLoggingStrategy._logs">
+            <summary>
+            The list of accumulated log messages.
+            </summary>
+        </member>
+        <member name="F:LogService.Core.LogStrategies.AccumulativeMessageBasedThresholdLoggingStrategy._flushingThreshold">
+            <summary>
+            The threshold for flushing the accumulated log messages to the log file.
+            </summary>
+        </member>
+        <member name="M:LogService.Core.LogStrategies.AccumulativeMessageBasedThresholdLoggingStrategy.#ctor(System.String,System.Int32)">
+            <summary>
+            Initializes a new instance of the AccumulativeMessageBasedThresholdLoggingStrategy class with the specified log file path and messages count threshold.
+            </summary>
+            <param name="validLogFilePath">The valid path to the log file.</param>
+            <param name="messagesCountThreshold">The threshold for flushing the accumulated log messages to the log file. The default value is 10.</param>
+        </member>
+        <member name="P:LogService.Core.LogStrategies.AccumulativeMessageBasedThresholdLoggingStrategy.ValidLogFilePath">
+            <summary>
+            The setter and getter of ValidLogFilePath field.
+            </summary>
+        </member>
+        <member name="P:LogService.Core.LogStrategies.AccumulativeMessageBasedThresholdLoggingStrategy.FlushingThreshold">
+            <summary>
+            Setter and getter of the flushing threshold.
+            </summary>
+            <exception cref="T:System.Exception">Throws an exception if the threshold to be set, is 0 or less.</exception>
+        </member>
+        <member name="P:LogService.Core.LogStrategies.AccumulativeMessageBasedThresholdLoggingStrategy.Logs">
+            <summary>
+            Setter and getters of accumulated logs;
+            </summary>
+        </member>
+        <member name="M:LogService.Core.LogStrategies.AccumulativeMessageBasedThresholdLoggingStrategy.Log(System.String)">
+            <summary>
+            Takes and message and then adds them to accumulative logs.
+            </summary>
+            <param name="message">Log message that will added to accumulated logs.</param>
+            <seealso cref="P:LogService.Core.LogStrategies.AccumulativeMessageBasedThresholdLoggingStrategy.Logs"/>
+        </member>
+        <member name="M:LogService.Core.LogStrategies.AccumulativeMessageBasedThresholdLoggingStrategy.CurrentDomain_ProcessExit(System.Object,System.EventArgs)">
+            <summary>
+            Handles the ProcessExit event of the current application domain. This method is called when the application is about to close.
+            It writes all the accumulated log messages stored in memory to the log file.
+            </summary>
+            <param name="sender">The source of the event. In this case, it's the current application domain.</param>
+            <param name="e">An EventArgs that contains no event data.</param>
+        </member>
+        <member name="M:LogService.Core.LogStrategies.AccumulativeMessageBasedThresholdLoggingStrategy.FlushToLogFile">
+            <summary>
+            Writes all accumulated log messages to the log file.
+            </summary>
+            <remarks>
+            This method is called when the number of log messages reaches the flushing threshold or when the application is about to close.
+            It writes all the accumulated log messages stored in memory to the log file.
+            </remarks>
+            <exception cref="T:System.Exception">Throws an exception if an error occurs while writing to the log file.</exception>
+        </member>
+        <member name="T:LogService.Core.LogStrategies.ILogStrategy">
+            <summary>
+            The ILogStartegy Interface that provides an interface for different startegies.
+            <remarks>This ILogStrategy is implemented by differnet concrete startegies</remarks>
+            <seealso cref="T:LogService.Core.LogStrategies.AccumulativeMessageBasedThresholdLoggingStrategy"/>
+            <seealso cref="T:LogService.Core.LogStrategies.InstanteMessageLoggingStrategy"/>
+            </summary>
+        </member>
+        <member name="M:LogService.Core.LogStrategies.ILogStrategy.Log(System.String)">
+            <summary>
+            Takes a message to log it.
+            </summary>
+            <param name="message">Message that is about to get logged.</param>
+        </member>
+        <member name="P:LogService.Core.LogStrategies.ILogStrategy.ValidLogFilePath">
+            <summary>
+            Property for validLogFilePath.
+            </summary>
+        </member>
+        <member name="T:LogService.Core.LogStrategies.InstanteMessageLoggingStrategy">
+            <summary>
+            The InstantMessageLoggingStartegy.
+            <remarks>This startegy implements the ILogStrategy interface, and takes log message (log implemeneted) and then log it instantly.</remarks>
+            <seealso cref="T:LogService.Core.LogStrategies.ILogStrategy"/>
+            <seealso cref="M:LogService.Core.LogStrategies.InstanteMessageLoggingStrategy.Log(System.String)"/>
+            </summary>
+        </member>
+        <member name="F:LogService.Core.LogStrategies.InstanteMessageLoggingStrategy._validLogFilePath">
+            <summary>
+            The valid log file path
+            </summary>
+        </member>
+        <member name="M:LogService.Core.LogStrategies.InstanteMessageLoggingStrategy.#ctor(System.String)">
+            <summary>
+            Parametrized constructor of InstantMessageLoggingStrategy.
+            </summary>
+            <remarks>Takes validLogFilePath</remarks>
+            <param name="validLogFilePath">Valid path of the log file</param>
+        </member>
+        <member name="P:LogService.Core.LogStrategies.InstanteMessageLoggingStrategy.ValidLogFilePath">
+            <summary>
+            Property for validLogFilePath.
+            </summary>
+        </member>
+        <member name="M:LogService.Core.LogStrategies.InstanteMessageLoggingStrategy.Log(System.String)">
+            <summary>
+            Takes a message to log it.
+            </summary>
+            <param name="message">Message that is about to get logged.</param>
+            <exception cref="T:System.Exception"></exception>
+        </member>
+        <member name="T:LogService.FileHandling.AbstractFileHandler">
+            <summary>
+            The AbstractFileHandler class is an abstract base class that provides a common interface for file handling operations.
+            This class is designed to be extended by concrete classes that provide specific implementations for different types of files.
+            </summary>
+        </member>
+        <member name="F:LogService.FileHandling.AbstractFileHandler._fileValidPath">
+            <summary>
+            The _fileValidPath field stores the valid path to the file.
+            </summary>
+        </member>
+        <member name="F:LogService.FileHandling.AbstractFileHandler._fileDefaultPath">
+            <summary>
+            The _fileDefaultPath field stores the default path to the file.
+            </summary>
+        </member>
+        <member name="M:LogService.FileHandling.AbstractFileHandler.#ctor">
+            <summary>
+            The default constructor initializes the _fileValidPath and _fileDefaultPath fields to empty strings.
+            </summary>
+        </member>
+        <member name="M:LogService.FileHandling.AbstractFileHandler.#ctor(System.String,System.String)">
+            <summary>
+            This constructor initializes the _fileValidPath field with the result of the Prepare method and the _fileDefaultPath field with the provided default file path.
+            </summary>
+            <param name="vagueFilePath">A vague path to the file.</param>
+            <param name="defaultFilePath">A default path to the file.</param>
+        </member>
+        <member name="P:LogService.FileHandling.AbstractFileHandler.FileValidPath">
+            <summary>
+            The FileValidPath property gets or sets the _fileValidPath field.
+            </summary>
+        </member>
+        <member name="P:LogService.FileHandling.AbstractFileHandler.FileDefaultPath">
+            <summary>
+            The FileDefaultPath property gets or sets the _fileDefaultPath field.
+            </summary>
+        </member>
+        <member name="M:LogService.FileHandling.AbstractFileHandler.Prepare(System.String)">
+            <summary>
+            The Prepare method is an abstract method that prepares the file handler.
+            This method must be implemented by any class that extends AbstractFileHandler.
+            </summary>
+            <param name="vagueFilePath">A vague path to the file.</param>
+            <returns>A string representing the valid file path.</returns>
+        </member>
+        <member name="M:LogService.FileHandling.AbstractFileHandler.Open">
+            <summary>
+            The Open method is an abstract method that opens the file.
+            This method must be implemented by any class that extends AbstractFileHandler.
+            </summary>
+        </member>
+        <member name="M:LogService.FileHandling.AbstractFileHandler.Delete">
+            <summary>
+            The Delete method is an abstract method that deletes the file.
+            This method must be implemented by any class that extends AbstractFileHandler.
+            </summary>
+        </member>
+        <member name="M:LogService.FileHandling.AbstractFileHandler.Clear">
+            <summary>
+            The Clear method is an abstract method that clears the contents of the file.
+            This method must be implemented by any class that extends AbstractFileHandler.
+            </summary>
+        </member>
+        <member name="T:LogService.FileHandling.LogFileHandler">
+            <summary>
+            The LogFileHandler class.
+            This class is responsible for handling log file. It extends the AbstractFileHandler class and provides implementations for the abstract methods.
+            </summary>
+            <remarks>
+            This class can create, clear, delete, and open log files. It also prepares a valid file path for the log file.
+            </remarks>
+            <seealso cref="T:LogService.FileHandling.AbstractFileHandler"/>
+        </member>
+        <member name="M:LogService.FileHandling.LogFileHandler.#ctor(System.String,System.String)">
+            <summary>
+            Constructor with parameters (Paramerized).
+            Initializes a new instance of the LogFileHandler class with the specified vague and default log file paths.
+            </summary>
+            <param name="vagueLogFilePath">The vague path of the log file.</param>
+            <param name="defaultLogFilePath">The default path of the log file.</param>
+        </member>
+        <member name="M:LogService.FileHandling.LogFileHandler.Prepare(System.String)">
+            <summary>
+            Prepares a valid file path for the log file.
+            </summary>
+            <param name="vagueFilePath">The vague file path to prepare.</param>
+            <returns>The prepared valid file path.</returns>
+            <exception cref="T:System.Exception">Throws an exception if an error occurs while preparing the file path.</exception>
+        </member>
+        <member name="M:LogService.FileHandling.LogFileHandler.Clear">
+            <summary>
+            Clears the log file.
+            </summary>
+            <exception cref="T:System.Exception">Throws an exception if an error occurs while clearing the log file.</exception>
+        </member>
+        <member name="M:LogService.FileHandling.LogFileHandler.Delete">
+            <summary>
+            Deletes the log file.
+            </summary>
+            <exception cref="T:System.Exception">Throws an exception if an error occurs while deleting the log file.</exception>
+        </member>
+        <member name="M:LogService.FileHandling.LogFileHandler.Open">
+            <summary>
+            Opens the log file.
+            </summary>
+            <exception cref="T:System.Exception">Throws an exception if an error occurs while opening the log file.</exception>
+        </member>
+        <member name="T:LogService.Formatting.Core.AbstractFormatter">
+            <summary>
+            The AbstractFormatter class.
+            This is an abstract base class for all formatter classes in the application.
+            It provides common functionality for formatting.
+            </summary>
+            <remarks>
+            This class uses the Strategy design pattern to allow different formatting behaviors to be used interchangeably.
+            </remarks>
+            <seealso cref="T:LogService.Formatting.FormattingStrategies.IFormateStrategy"/>
+        </member>
+        <member name="F:LogService.Formatting.Core.AbstractFormatter._formateStrategy">
+            <summary>
+            The format strategy used by this formatter.
+            This determines how log messages are formatted.
+            </summary>
+            <seealso cref="T:LogService.Formatting.FormattingStrategies.IFormateStrategy"/>
+        </member>
+        <member name="M:LogService.Formatting.Core.AbstractFormatter.#ctor">
+            <summary>
+            Default constructor.
+            Initializes a new instance of the AbstractFormatter class with a default format strategy.
+            </summary>
+        </member>
+        <member name="M:LogService.Formatting.Core.AbstractFormatter.#ctor(LogService.Formatting.FormattingStrategies.IFormateStrategy)">
+            <summary>
+            Constructor with parameters.
+            Initializes a new instance of the AbstractFormatter class with the specified format strategy.
+            </summary>
+            <param name="formateStrategy">The format strategy to use.</param>
+        </member>
+        <member name="P:LogService.Formatting.Core.AbstractFormatter.FormateStrategy">
+            <summary>
+            Gets or sets the format strategy used by this formatter.
+            </summary>
+        </member>
+        <member name="M:LogService.Formatting.Core.AbstractFormatter.Formate(System.Object[])">
+            <summary>
+            Formats a series of objects into a single string.
+            </summary>
+            <param name="param">The objects to format.</param>
+            <returns>The formatted string.</returns>
+            <exception cref="T:System.Exception">Throws an exception if an error occurs while formatting the objects.</exception>
+        </member>
+        <member name="T:LogService.Formatting.Core.LogMessageFormatter">
+            <summary>
+            The LogMessageFormatter class is responsible for formatting log messages.
+            It both extends and implements the AbstractFormatter class.
+            </summary>
+        </member>
+        <member name="M:LogService.Formatting.Core.LogMessageFormatter.#ctor">
+            <summary>
+            Default constructor for the LogMessageFormatter class.
+            It initializes the _formateStrategy field with a new instance of FormatingLogMessageStrategy.
+            </summary>
+        </member>
+        <member name="T:LogService.Formatting.FormattingStrategies.DefaultFormattingStrategy">
+            <summary>
+            The DefaultFormattingStrategy class provides a default implementation of the IFormateStrategy interface.
+            It formats log messages by appending each parameter to a string, separated by a specified separator.
+            </summary>
+            <seealso cref="T:LogService.Formatting.FormattingStrategies.IFormateStrategy" />
+        </member>
+        <member name="F:LogService.Formatting.FormattingStrategies.DefaultFormattingStrategy._sep">
+            <summary>
+            The separator used in the formatting process.
+            </summary>
+        </member>
+        <member name="M:LogService.Formatting.FormattingStrategies.DefaultFormattingStrategy.#ctor">
+            <summary>
+            Default constructor for the DefaultFormattingStrategy class.
+            Initializes the separator to a hyphen (-).
+            </summary>
+        </member>
+        <member name="P:LogService.Formatting.FormattingStrategies.DefaultFormattingStrategy.Sep">
+            <summary>
+            Gets or sets the separator used in the formatting process.
+            </summary>
+        </member>
+        <member name="M:LogService.Formatting.FormattingStrategies.DefaultFormattingStrategy.Formate(System.Object[])">
+            <summary>
+            Formats the input parameters into a specific format.
+            </summary>
+            <param name="param">An array of objects that contains zero or more objects to format.</param>
+            <returns>Returns a formatted string.</returns>
+        </member>
+        <member name="T:LogService.Formatting.FormattingStrategies.FormatingLogMessageStrategy">
+            <summary>
+            The FormatingLogMessageStrategy class provides an implementation of the IFormateStrategy interface.
+            It formats log messages by appending each parameter to a string, separated by a specified separator.
+            </summary>
+            <remarks>
+            This class is part of the LogService.Formatting.FormattingStrategies namespace.
+            </remarks>
+            <seealso cref="T:LogService.Formatting.FormattingStrategies.IFormateStrategy"/>
+        </member>
+        <member name="F:LogService.Formatting.FormattingStrategies.FormatingLogMessageStrategy._sep">
+            <summary>
+            The separator used in the formatting process.
+            </summary>
+        </member>
+        <member name="F:LogService.Formatting.FormattingStrategies.FormatingLogMessageStrategy._isDataTimeGiven">
+            <summary>
+            A flag indicating whether a DateTime object is given in the parameters.
+            </summary>
+        </member>
+        <member name="M:LogService.Formatting.FormattingStrategies.FormatingLogMessageStrategy.#ctor">
+            <summary>
+            Default constructor for the FormatingLogMessageStrategy class.
+            Initializes the separator to a space and the _isDataTimeGiven flag to false.
+            </summary>
+        </member>
+        <member name="M:LogService.Formatting.FormattingStrategies.FormatingLogMessageStrategy.#ctor(System.String)">
+            <summary>
+            Constructor for the FormatingLogMessageStrategy class that allows specifying a custom separator.
+            Initializes the separator to the provided value and the _isDataTimeGiven flag to false.
+            </summary>
+            <param name="sep">The separator to be used in the formatting process.</param>
+        </member>
+        <member name="P:LogService.Formatting.FormattingStrategies.FormatingLogMessageStrategy.Sep">
+            <summary>
+            Gets or sets the separator used in the formatting process.
+            </summary>
+        </member>
+        <member name="M:LogService.Formatting.FormattingStrategies.FormatingLogMessageStrategy.Formate(System.Object[])">
+            <summary>
+            Formats the input parameters into a specific format.
+            </summary>
+            <param name="param">An array of objects that contains zero or more objects to format.</param>
+            <returns>Returns a formatted string.</returns>
+        </member>
+        <member name="M:LogService.Formatting.FormattingStrategies.FormatingLogMessageStrategy.FormateDateTime(System.DateTime)">
+            <summary>
+            Formats a DateTime object into a specific string format.
+            </summary>
+            <param name="dateTime">The DateTime object to format.</param>
+            <returns>Returns a string representation of the DateTime object.</returns>
+        </member>
+        <member name="T:LogService.Formatting.FormattingStrategies.IFormateStrategy">
+            <summary>
+            The IFormateStrategy interface defines the structure for formatting strategies.
+            It provides a contract that classes implementing this interface will provide a specific formatting implementation.
+            </summary>
+        </member>
+        <member name="P:LogService.Formatting.FormattingStrategies.IFormateStrategy.Sep">
+            <summary>
+            Gets or sets the separator character used in the formatting process.
+            </summary>
+        </member>
+        <member name="M:LogService.Formatting.FormattingStrategies.IFormateStrategy.Formate(System.Object[])">
+            <summary>
+            Formats the input parameters into a specific format.
+            </summary>
+            <param name="param">An array of objects that contains zero or more objects to format.</param>
+            <returns>Returns a formatted string.</returns>
+        </member>
+        <member name="T:LogService.Validation.Core.ValidationResult">
+            <summary>
+            The ValidationResult class is an immutable object that represents the result of a validation operation.
+            It contains two properties: IsValid and Exists.
+            </summary>
+        </member>
+        <member name="F:LogService.Validation.Core.ValidationResult._isValid">
+            <summary>
+            Indicates whether the validation was successful.
+            </summary>
+        </member>
+        <member name="F:LogService.Validation.Core.ValidationResult._exists">
+            <summary>
+            Indicates whether the validated object exists.
+            </summary>
+        </member>
+        <member name="M:LogService.Validation.Core.ValidationResult.#ctor(System.Boolean,System.Boolean)">
+            <summary>
+            Initializes a new instance of the ValidationResult class with the specified validation result and existence.
+            </summary>
+            <param name="validationResult">Indicates whether the validation was successful. The default value is false.</param>
+            <param name="exists">Indicates whether the validated object exists. The default value is false.</param>
+        </member>
+        <member name="P:LogService.Validation.Core.ValidationResult.IsValid">
+            <summary>
+            Gets a value indicating whether the validation was successful.
+            </summary>
+        </member>
+        <member name="P:LogService.Validation.Core.ValidationResult.Exists">
+            <summary>
+            Gets a value indicating whether the validated object exists.
+            </summary>
+        </member>
+        <member name="T:LogService.Validation.Core.Validator">
+            <summary>
+            The Validator class is responsible for validating objects using a specified validation strategy.
+            It provides methods to validate an object using either an instance validation strategy or a static validation strategy.
+            </summary>
+        </member>
+        <member name="F:LogService.Validation.Core.Validator._validationStrategy">
+            <summary>
+            The validation strategy used by this Validator instance.
+            </summary>
+        </member>
+        <member name="M:LogService.Validation.Core.Validator.#ctor(LogService.Validation.Strategies.IValidationStrategy)">
+            <summary>
+            Initializes a new instance of the Validator class with the specified validation strategy.
+            </summary>
+            <param name="validationStrategy">The validation strategy to be used by this Validator instance.</param>
+            <seealso cref="T:LogService.Validation.Strategies.IValidationStrategy"/>
+        </member>
+        <member name="P:LogService.Validation.Core.Validator.ValidationStrategy">
+            <summary>
+            Gets or sets the validation strategy used by this Validator instance.
+            </summary>
+        </member>
+        <member name="M:LogService.Validation.Core.Validator.Validate(System.Object)">
+            <summary>
+            Validates an object using the instance validation strategy.
+            </summary>
+            <param name="input">The object to validate.</param>
+            <returns>Returns a ValidationResult object that indicates whether the validation was successful and any additional information.</returns>
+            <seealso cref="T:LogService.Validation.Core.ValidationResult"/>
+        </member>
+        <member name="M:LogService.Validation.Core.Validator.Validate(LogService.Validation.Enums.ValidationStartegyType,System.Object)">
+            <summary>
+            Validates an object using a static validation strategy specified by a ValidationStartegyType.
+            </summary>
+            <param name="type">The type of the validation strategy to use.</param>
+            <param name="input">The object to validate.</param>
+            <returns>Returns a ValidationResult object that indicates whether the validation was successful and any additional information.</returns>
+            <seealso cref="T:LogService.Validation.Factories.ValidationStrategyFactory"/>
+            <seealso cref="T:LogService.Validation.Core.ValidationResult"/>
+            <seealso cref="T:LogService.Validation.Enums.ValidationStartegyType"/>
+        </member>
+        <member name="M:LogService.Validation.Core.Validator.Validate(LogService.Validation.Strategies.IValidationStrategy,System.Object)">
+            <summary>
+            Validates an object using a specified static validation strategy.
+            </summary>
+            <param name="strategy">The validation strategy to use.</param>
+            <param name="input">The object to validate.</param>
+            <returns>Returns a ValidationResult object that indicates whether the validation was successful and any additional information.</returns>
+            <seealso cref="T:LogService.Validation.Core.ValidationResult"/>
+            <seealso cref="T:LogService.Validation.Strategies.IValidationStrategy"/>
+        </member>
+        <member name="T:LogService.Validation.Enums.ValidationStartegyType">
+            <summary>
+            The ValidationStartegyType enumeration provides identifiers for different types of validation strategies.
+            </summary>
+        </member>
+        <member name="F:LogService.Validation.Enums.ValidationStartegyType.LogFilePathValidation">
+            <summary>
+            Represents the LogFilePathValidation strategy type.
+            </summary>
+        </member>
+        <member name="F:LogService.Validation.Enums.ValidationStartegyType.LogFilePathWithoutExceptionsValidation">
+            <summary>
+            Represents the LogFilePathWithoutExceptionsValidation strategy type.
+            </summary>
+        </member>
+        <member name="T:LogService.Validation.Exceptions.ValidationException">
+            <summary>
+            The ValidationException class represents errors that occur during application execution related to validation.
+            This class is derived from the System.Exception class.
+            </summary>
+        </member>
+        <member name="F:LogService.Validation.Exceptions.ValidationException.EXCEPTION_SUFFIX">
+            <summary>
+            The suffix added to every exception message.
+            </summary>
+        </member>
+        <member name="F:LogService.Validation.Exceptions.ValidationException._msg">
+            <summary>
+            The message that describes the error.
+            </summary>
+        </member>
+        <member name="M:LogService.Validation.Exceptions.ValidationException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the ValidationException class with a specified error message.
+            </summary>
+            <param name="message">The message that describes the error.</param>
+        </member>
+        <member name="P:LogService.Validation.Exceptions.ValidationException.Message">
+            <summary>
+            Gets a message that describes the current exception.
+            </summary>
+        </member>
+        <member name="M:LogService.Validation.Exceptions.ValidationException.InitMessageAttr(System.String)">
+            <summary>
+            Initializes the _msg field with the provided message.
+            If the message does not start with the EXCEPTION_SUFFIX, it adds the suffix to the message.
+            </summary>
+            <param name="message">The message to initialize the _msg field with.</param>
+        </member>
+        <member name="T:LogService.Validation.Factories.ValidationStrategyFactory">
+            <summary>
+            The ValidationStrategyFactory class is a factory class that creates instances of IValidationStrategy.
+            It implements the Factory Method design pattern.
+            </summary>
+        </member>
+        <member name="M:LogService.Validation.Factories.ValidationStrategyFactory.Create(LogService.Validation.Enums.ValidationStartegyType)">
+            <summary>
+            Creates an instance of IValidationStrategy based on the provided strategy type.
+            </summary>
+            <param name="strategyType">The type of the validation strategy to create.</param>
+            <returns>Returns an instance of IValidationStrategy. If the strategy type does not match any known types, it returns null.</returns>
+            <seealso cref="T:LogService.Validation.Strategies.IValidationStrategy"/>
+        </member>
+        <member name="T:LogService.Validation.Strategies.IValidationStrategy">
+            <summary>
+            The IValidationStrategy interface defines the structure for validation strategies.
+            It provides a contract that classes implementing this interface will provide a specific validation implementation.
+            </summary>
+        </member>
+        <member name="M:LogService.Validation.Strategies.IValidationStrategy.Validate(System.Object)">
+            <summary>
+            Validates the input object.
+            </summary>
+            <param name="input">The object to validate.</param>
+            <returns>Returns a ValidationResult object that indicates whether the validation was successful and any additional information.</returns>
+            <seealso cref="T:LogService.Validation.Core.ValidationResult"/>
+        </member>
+        <member name="T:LogService.Validation.Strategies.LogFilePathValidationStrategy">
+            <summary>
+            The LogFilePathValidationStrategy class provides an implementation of the IValidationStrategy interface.
+            It validates log file paths by checking if the path is a string, is not null or empty, matches a specific regex pattern, and if the file exists.
+            </summary>
+            <seealso cref="T:LogService.Validation.Strategies.IValidationStrategy"/>
+        </member>
+        <member name="F:LogService.Validation.Strategies.LogFilePathValidationStrategy.REGEX_PATTERN">
+            <summary>
+            The regex pattern used in the validation process.
+            </summary>
+        </member>
+        <member name="F:LogService.Validation.Strategies.LogFilePathValidationStrategy._rgx">
+            <summary>
+            The Regex object used in the validation process.
+            </summary>
+        </member>
+        <member name="M:LogService.Validation.Strategies.LogFilePathValidationStrategy.#ctor">
+            <summary>
+            Default constructor for the LogFilePathValidationStrategy class.
+            Initializes the ValidationRegex to a new Regex object with the REGEX_PATTERN.
+            </summary>
+        </member>
+        <member name="P:LogService.Validation.Strategies.LogFilePathValidationStrategy.ValidationRegex">
+            <summary>
+            Gets or sets the Regex object used in the validation process.
+            </summary>
+        </member>
+        <member name="M:LogService.Validation.Strategies.LogFilePathValidationStrategy.Validate(System.Object)">
+            <summary>
+            Validates the log file path.
+            </summary>
+            <param name="logFilePath">The log file path to validate.</param>
+            <returns>Returns a ValidationResult object that indicates whether the validation was successful and any additional information.</returns>
+            <exception cref="T:LogService.Validation.Exceptions.ValidationException">Thrown when the logFilePath is not a string, is null or empty, does not match the regex pattern, or if the file does not exist.</exception>
+        </member>
+        <member name="T:LogService.Validation.Strategies.LogFilePathWithoutExceptionsValidationStrategy">
+            <summary>
+            The LogFilePathWithoutExceptionsValidationStrategy class provides an implementation of the IValidationStrategy interface.
+            It validates log file paths by checking if the path is a string, is not null or empty, matches a specific regex pattern, and if the file exists.
+            Unlike the LogFilePathValidationStrategy, this class does not throw exceptions but instead returns a ValidationResult object with the validation result.
+            </summary>
+            <seealso cref="T:LogService.Validation.Strategies.IValidationStrategy"/>
+        </member>
+        <member name="F:LogService.Validation.Strategies.LogFilePathWithoutExceptionsValidationStrategy.REGEX_PATTERN">
+            <summary>
+            The regex pattern used in the validation process.
+            </summary>
+        </member>
+        <member name="F:LogService.Validation.Strategies.LogFilePathWithoutExceptionsValidationStrategy._rgx">
+            <summary>
+            The Regex object used in the validation process.
+            </summary>
+        </member>
+        <member name="M:LogService.Validation.Strategies.LogFilePathWithoutExceptionsValidationStrategy.#ctor">
+            <summary>
+            Default constructor for the LogFilePathWithoutExceptionsValidationStrategy class.
+            Initializes the ValidationRegex to a new Regex object with the REGEX_PATTERN.
+            </summary>
+        </member>
+        <member name="P:LogService.Validation.Strategies.LogFilePathWithoutExceptionsValidationStrategy.ValidationRegex">
+            <summary>
+            Gets or sets the Regex object used in the validation process.
+            </summary>
+        </member>
+        <member name="M:LogService.Validation.Strategies.LogFilePathWithoutExceptionsValidationStrategy.Validate(System.Object)">
+            <summary>
+            Validates the log file path.
+            </summary>
+            <param name="logFilePath">The log file path to validate.</param>
+            <returns>Returns a ValidationResult object that indicates whether the validation was successful and any additional information.</returns>
+            <seealso cref="T:LogService.Validation.Core.ValidationResult"/>
+        </member>
+    </members>
+</doc>
