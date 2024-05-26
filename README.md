@@ -7,11 +7,10 @@
 - [Installation](#installation)
 - [Usage](#usage)
 - [Configuration](#configuration)
-- [Customization](#customization)
 - [Deployment](#deployment)
-- [Teammates](#teammates)
+- [Author](#author)
 - [License](#license)
-- 
+  
 ### Prerequisites
 
 - .NET Framework
