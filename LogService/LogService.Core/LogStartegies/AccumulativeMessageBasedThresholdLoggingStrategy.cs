@@ -6,20 +6,40 @@ using System.Text;
 namespace LogService.Core.LogStrategies
 {
 	/// <summary>
-	/// The AccumulativeMessageLoggingStrategy class.
-	/// <remarks>This class implements the ILogStrategy interface and provides a log startegy that logs the accumulated message when the system is closed.</remarks>
-	/// <seealso cref="ILogStrategy"/>
+	/// The AccumulativeMessageBasedThresholdLoggingStrategy class provides an implementation of the ILogStrategy interface.
+	/// It accumulates log messages and writes them to a log file when the system is closed or when the number of log messages reaches a specified threshold.
 	/// </summary>
+	/// <remarks>
+	/// This class implements the ILogStrategy interface and provides a log strategy that logs the accumulated message when the system is closed.
+	/// </remarks>
+	/// <seealso cref="ILogStrategy"/>
 	public class AccumulativeMessageBasedThresholdLoggingStrategy: ILogStrategy
 	{
 		/* Instance attributes */
+		/// <summary>
+		/// The valid path to the log file.
+		/// </summary>
 		protected string _validLogFilePath;
+
+		/// <summary>
+		/// The list of accumulated log messages.
+		/// </summary>
 		protected List<string> _logs;
+
+		/// <summary>
+		/// The threshold for flushing the accumulated log messages to the log file.
+		/// </summary>
 		protected int _flushingThreshold;
 
 
-        /* Constructors */
-        public AccumulativeMessageBasedThresholdLoggingStrategy(string validLogFilePath, int messagesCountThreshold=10)
+		/* Constructors */
+
+		/// <summary>
+		/// Initializes a new instance of the AccumulativeMessageBasedThresholdLoggingStrategy class with the specified log file path and messages count threshold.
+		/// </summary>
+		/// <param name="validLogFilePath">The valid path to the log file.</param>
+		/// <param name="messagesCountThreshold">The threshold for flushing the accumulated log messages to the log file. The default value is 10.</param>
+		public AccumulativeMessageBasedThresholdLoggingStrategy(string validLogFilePath, int messagesCountThreshold=10)
         {
 			// Init local attributes 
 			_validLogFilePath = validLogFilePath;
