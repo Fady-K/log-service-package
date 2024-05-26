@@ -6,14 +6,36 @@ using LogService.Validation.Strategies;
 
 namespace LogService.FileHandling
 {
+	/// <summary>
+	/// The LogFileHandler class.
+	/// This class is responsible for handling log file. It extends the AbstractFileHandler class and provides implementations for the abstract methods.
+	/// </summary>
+	/// <remarks>
+	/// This class can create, clear, delete, and open log files. It also prepares a valid file path for the log file.
+	/// </remarks>
+	/// <seealso cref="AbstractFileHandler"/>
 	public class LogFileHandler : AbstractFileHandler
 	{
 		/* Constructors */
+
+		/// <summary>
+		/// Constructor with parameters (Paramerized).
+		/// Initializes a new instance of the LogFileHandler class with the specified vague and default log file paths.
+		/// </summary>
+		/// <param name="vagueLogFilePath">The vague path of the log file.</param>
+		/// <param name="defaultLogFilePath">The default path of the log file.</param>
 		public LogFileHandler(string vagueLogFilePath, string defaultLogFilePath) : base(vagueLogFilePath, defaultLogFilePath)
 		{
 		}
 
 		/* Instance methods */
+
+		/// <summary>
+		/// Prepares a valid file path for the log file.
+		/// </summary>
+		/// <param name="vagueFilePath">The vague file path to prepare.</param>
+		/// <returns>The prepared valid file path.</returns>
+		/// <exception cref="Exception">Throws an exception if an error occurs while preparing the file path.</exception>
 		protected override string Prepare(string vagueFilePath)
 		{
 			// Empty file path
@@ -60,7 +82,10 @@ namespace LogService.FileHandling
 			return validFilePath;
 		}
 
-
+		/// <summary>
+		/// Clears the log file.
+		/// </summary>
+		/// <exception cref="Exception">Throws an exception if an error occurs while clearing the log file.</exception>
 		public override void Clear()
 		{
 			// If file exists clear it
@@ -74,6 +99,10 @@ namespace LogService.FileHandling
 			}
 		}
 
+		/// <summary>
+		/// Deletes the log file.
+		/// </summary>
+		/// <exception cref="Exception">Throws an exception if an error occurs while deleting the log file.</exception>
 		public override void Delete()
 		{
 			//If file exists delete it
@@ -87,6 +116,10 @@ namespace LogService.FileHandling
 			}
 		}
 
+		/// <summary>
+		/// Opens the log file.
+		/// </summary>
+		/// <exception cref="Exception">Throws an exception if an error occurs while opening the log file.</exception>
 		public override void Open()
 		{
 			try
