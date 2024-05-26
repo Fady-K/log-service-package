@@ -2,31 +2,46 @@
 using System.Text.RegularExpressions;
 using LogService.Validation.Core;
 
-
 namespace LogService.Validation.Strategies
 {
+	/// <summary>
+	/// The LogFilePathWithoutExceptionsValidationStrategy class provides an implementation of the IValidationStrategy interface.
+	/// It validates log file paths by checking if the path is a string, is not null or empty, matches a specific regex pattern, and if the file exists.
+	/// Unlike the LogFilePathValidationStrategy, this class does not throw exceptions but instead returns a ValidationResult object with the validation result.
+	/// </summary>
+	/// <seealso cref="IValidationStrategy"/>
 	public class LogFilePathWithoutExceptionsValidationStrategy : IValidationStrategy
 	{
-		/* Constants */
+		/// <summary>
+		/// The regex pattern used in the validation process.
+		/// </summary>
 		protected const string REGEX_PATTERN = @"";
 
-		/* Instance attributes */
+		/// <summary>
+		/// The Regex object used in the validation process.
+		/// </summary>
 		protected Regex _rgx;
 
-
-		/* Constructors */
+		/// <summary>
+		/// Default constructor for the LogFilePathWithoutExceptionsValidationStrategy class.
+		/// Initializes the ValidationRegex to a new Regex object with the REGEX_PATTERN.
+		/// </summary>
 		public LogFilePathWithoutExceptionsValidationStrategy()
 		{
-			// Init instance attributes
 			ValidationRegex = new Regex(REGEX_PATTERN);
 		}
 
-
-		/* Setters and getters */
+		/// <summary>
+		/// Gets or sets the Regex object used in the validation process.
+		/// </summary>
 		public Regex ValidationRegex { get { return _rgx; } protected set { _rgx = value; } }
 
-
-		/* Instance methods */
+		/// <summary>
+		/// Validates the log file path.
+		/// </summary>
+		/// <param name="logFilePath">The log file path to validate.</param>
+		/// <returns>Returns a ValidationResult object that indicates whether the validation was successful and any additional information.</returns>
+		/// <seealso cref="ValidationResult"/>
 		public ValidationResult Validate(object logFilePath)
 		{
 			// Validation result by default = false;
