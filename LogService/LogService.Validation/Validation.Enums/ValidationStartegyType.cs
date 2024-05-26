@@ -8,7 +8,7 @@ namespace LogService.Validation.Enums
 {
     public enum ValidationStartegyType
     {
-        YoutubeURLValidation,
-        DownloadPathValidation
+        LogFilePathValidation,
+        LogFilePathWithoutExceptionsValidation
     }
 }
