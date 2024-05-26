@@ -12,6 +12,10 @@ namespace LogService.Core.LogStrategies
 	public class InstanteMessageLoggingStrategy: ILogStrategy
 	{
 		/* Instance attributes */
+
+		/// <summary>
+		/// The valid log file path
+		/// </summary>
 		protected string _validLogFilePath;
 
 
@@ -29,10 +33,19 @@ namespace LogService.Core.LogStrategies
 
 
 		/* Setters and getters */
+		/// <summary>
+		/// Property for validLogFilePath.
+		/// </summary>
 		public string ValidLogFilePath { get => _validLogFilePath; set => _validLogFilePath = value; }
 
 
 		/* Instance methos */
+
+		/// <summary>
+		/// Takes a message to log it.
+		/// </summary>
+		/// <param name="message">Message that is about to get logged.</param>
+		/// <exception cref="System.Exception"></exception>
 		public void Log(string message)
 		{
 			try

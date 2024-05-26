@@ -4,7 +4,6 @@
 	/// The ILogStartegy Interface that provides an interface for different startegies.
 	/// <remarks>This ILogStrategy is implemented by differnet concrete startegies</remarks>
 	/// <seealso cref="AccumulativeMessageBasedThresholdLoggingStrategy"/>
-	/// <seealso cref="DefaultLogStrategy"/>
 	/// <seealso cref="InstanteMessageLoggingStrategy"/>
 	/// </summary>
 	public interface ILogStrategy
