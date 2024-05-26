@@ -1,0 +1,46 @@
+Folder PATH listing
+Volume serial number is 1281-3817
+C:.
++---LogService.Core
+¦   ¦   AbstractLogger.cs
+¦   ¦   Logger.cs
+¦   ¦   LoggingService.cs
+¦   ¦   
+¦   +---LogStartegies
+¦           AccumulativeMessageBasedThresholdLoggingStrategy.cs
+¦           ILogStrategy.cs
+¦           InstanteMessageLoggingStrategy.cs
+¦           
++---LogService.FileHandling
+¦       AbstractFileHandler.cs
+¦       LogFileHandler.cs
+¦       
++---LogService.Formatting
+¦   +---Formatting.Core
+¦   ¦       AbstractFormatter.cs
+¦   ¦       LogMessageFormatter.cs
+¦   ¦       
+¦   +---Formatting.FormattingStrategies
+¦           DefaultFormattingStrategy.cs
+¦           FormatingLogMessageStrategy.cs
+¦           IFormateStrategy.cs
+¦           
++---LogService.Validation
+    +---Validation.Core
+    ¦       ValidationResult.cs
+    ¦       Validator.cs
+    ¦       
+    +---Validation.Enums
+    ¦       ValidationStartegyType.cs
+    ¦       
+    +---Validation.Exceptions
+    ¦       ValidationException.cs
+    ¦       
+    +---Validation.Factories
+    ¦       ValidationStrategyFactory.cs
+    ¦       
+    +---Validation.Strategies
+            IValidationStrategy.cs
+            LogFilePathValidationStrategy.cs
+            LogFilePathWithoutExceptionsValidationStrategy.cs
+            
