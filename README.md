@@ -158,6 +158,7 @@ Below is an example of how the `<appSettings>` section in your `app.config` file
     <!-- Add other configuration settings as needed -->
   </appSettings>
 </configuration>
+```
 ## Deployment
 ## Author
 ## License
