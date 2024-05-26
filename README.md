@@ -15,10 +15,29 @@
 - [License](#license)
 
 ## Prerequisites
-- Set up your development environment for .NET Framework with necessary compilers and libraries.
-- **.NET Framework v4.8** for optimal performance.
-- Ensure your application uses an `app.config` file, as this package relies on it for configuration.
-- Include the `System.Configuration.ConfigurationManager` reference in your project. It's a system DLL that comes with .NET and can be added via the 'Add Reference' dialog in your development environment.
+Before you start using `LogService` in your project, make sure you have the following prerequisites set up:
+1. **Development Environment for .NET Framework**:
+   - Ensure that you have a development environment configured for .NET Framework. This includes having the necessary compilers and libraries installed.
+   - If you haven't already, download and install the latest version of the .NET Framework SDK.
+
+2. **.NET Framework v4.8**:
+   - For optimal performance and compatibility, use **.NET Framework version 4.8** or later.
+   - If you're not sure which version you have, you can check it using the following command in your terminal or command prompt:
+     ```
+     dotnet --version
+     ```
+     Make sure the output indicates version 4.8 or higher.
+
+3. **`app.config` File**:
+   - Ensure that your application uses an `app.config` file. `LogService` relies on this configuration file to manage its settings.
+   - If your project doesn't have an `app.config` file, create one in the root directory of your project.
+
+4. **`System.Configuration.ConfigurationManager` Reference**:
+   - Add a reference to the `System.Configuration.ConfigurationManager` assembly in your project.
+   - This assembly is a system DLL that comes with .NET and provides access to configuration settings.
+   - You can add this reference via the 'Add Reference' dialog in your development environment.
+
+By meeting these prerequisites, you'll be ready to integrate and configure `LogService` seamlessly. If you have any further questions or need additional assistance, feel free to ask! 😊
 
 ## Installation
 1. Download the `LogService` package.
