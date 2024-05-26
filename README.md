@@ -1,14 +1,19 @@
 # LogService
 
+## Description
+
+`LogService` is a flexible and extensible logging service for .NET applications. It provides different logging strategies and formatting options, making it easy to log messages in a way that suits your application's needs.
+
 ## Class Diagram
 
 Here is a class diagram showing the main classes in the LogService library:
 
 !Class Diagram
 
-## File Structure
+## Package Structure
 
-Here is the file structure of the LogService library:
+Here is the package structure of the LogService library:
+
 
 
 ## Getting Started
