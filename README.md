@@ -44,7 +44,6 @@ By meeting these prerequisites, you'll be ready to integrate and configure `LogS
 
 ## Usage
 Here's a basic example of how to use `LogService`:
-
 ```csharp
 // Using the LogService singleton
 LoggingService.GetInstance().Log(DateTime.Now, MessageType, "This is a log message");
