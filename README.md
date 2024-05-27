@@ -147,7 +147,6 @@ In your `app.config` file, make sure you have an `<appSettings>` section. Add th
     ```
     
 Below is an example of how the `<appSettings>` section in your `app.config` file might look:
-
 ```xml
 <configuration>
   <appSettings>
