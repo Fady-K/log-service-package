@@ -113,7 +113,6 @@ logger.Log("This is a log message", "Info", "Additional context if needed");
 The `LoggingService` class serves as the core of the logging system. It follows the Singleton design pattern, ensuring that only one instance exists in the application. This design guarantees centralized control over logging operations and facilitates consistent logging behavior throughout the application.
 
 #### Abstract Logger
-
 The `AbstractLogger` class is an abstract base class that provides common functionality for all logger classes in the application. It implements the Strategy design pattern, allowing different logging behaviors to be used interchangeably. The `AbstractLogger` class defines methods for logging messages and manages the interaction between log strategies and formatters.
 
 #### Logger
@@ -139,7 +138,6 @@ In your `app.config` file, make sure you have an `<appSettings>` section. Add th
     Make sure to adjust the value to the desired log file path.
 
 2. **`log_file_default_path`**: This key should remain unchanged. It specifies the default log file path. Keep it as follows:
-
     ```xml
     <appSettings>
         <add key="log_file_default_path" value="./Log/Log.txt"/>
