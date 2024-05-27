@@ -316,7 +316,7 @@ logFileHandler.Delete();
 </details>
 
 <details>
-  <summary><span style="font-size: 1.2em; font-weight: bold; margin-left: 5px;">LogService.Formatting</span></summary>
+  <summary><span style="font-size: 1.2em; font-weight: bold; margin-left: 5px;">LogService.Formatting.Core</span></summary>
 
 #### AbstractFormatter Class
 
@@ -375,6 +375,100 @@ object formattedMessage = formatter.Formate("This is a test log message.");
 ```
 </details>
 
+
+<details>
+  <summary><span style="font-size: 1.2em;">LogService.Formatting.FormattingStrategies</span></summary>
+
+#### IFormateStrategy Interface
+
+The `IFormateStrategy` interface, part of the `LogService.Formatting.FormattingStrategies` namespace, defines the structure for formatting strategies. It provides a contract that classes implementing this interface will provide a specific formatting implementation.
+
+##### Properties
+
+- `Sep`: This property gets or sets the separator character used in the formatting process.
+
+##### Methods
+
+- `Formate(params object[] param)`: This method formats the input parameters into a specific format. It returns a formatted string.
+
+##### Example Usage
+
+Here's an example of how you might use a class that implements this interface:
+
+```csharp
+// Assume DefaultFormattingStrategy is a class that implements IFormateStrategy
+DefaultFormattingStrategy formatter = new DefaultFormattingStrategy();
+
+// Format a message
+object formattedMessage = formatter.Formate("This", "is", "a", "test", "log", "message.");
+```
+
+#### DefaultFormattingStrategy Class
+
+The `DefaultFormattingStrategy` class, part of the `LogService.Formatting.FormattingStrategies` namespace, provides a default implementation of the `IFormateStrategy` interface. It formats log messages by appending each parameter to a string, separated by a specified separator.
+
+#### Fields
+
+- `_sep`: The separator used in the formatting process.
+
+#### Constructors
+
+- `DefaultFormattingStrategy()`: The default constructor initializes a new instance of the `DefaultFormattingStrategy` class with a hyphen (-) as the separator.
+
+#### Properties
+
+- `Sep`: This property gets or sets the separator used in the formatting process.
+
+#### Methods
+
+- `Formate(params object[] param)`: This method formats the input parameters into a specific format. It returns a formatted string.
+
+#### Example Usage
+
+Here's an example of how you might use the `DefaultFormattingStrategy` class:
+
+```csharp
+// Create a new instance of the DefaultFormattingStrategy class
+DefaultFormattingStrategy formatter = new DefaultFormattingStrategy();
+
+// Format a message
+object formattedMessage = formatter.Formate("This", "is", "a", "test", "log", "message.");
+```
+
+#### FormatingLogMessageStrategy Class
+
+The `FormatingLogMessageStrategy` class, part of the `LogService.Formatting.FormattingStrategies` namespace, provides an implementation of the `IFormateStrategy` interface. It formats log messages by appending each parameter to a string, separated by a specified separator.
+
+##### Fields
+
+- `_sep`: The separator used in the formatting process.
+- `_isDataTimeGiven`: A flag indicating whether a DateTime object is given in the parameters.
+
+##### Constructors
+
+- `FormatingLogMessageStrategy()`: The default constructor initializes a new instance of the `FormatingLogMessageStrategy` class with a space as the separator and the `_isDataTimeGiven` flag set to false.
+- `FormatingLogMessageStrategy(string sep)`: This constructor initializes a new instance of the `FormatingLogMessageStrategy` class with the provided separator and the `_isDataTimeGiven` flag set to false.
+
+##### Properties
+
+- `Sep`: This property gets or sets the separator used in the formatting process.
+
+##### Methods
+
+- `Formate(params object[] param)`: This method formats the input parameters into a specific format. It returns a formatted string.
+
+##### Example Usage
+
+Here's an example of how you might use the `FormatingLogMessageStrategy` class:
+
+```csharp
+// Create a new instance of the FormatingLogMessageStrategy class
+FormatingLogMessageStrategy formatter = new FormatingLogMessageStrategy();
+
+// Format a message
+object formattedMessage = formatter.Formate("This", "is", "a", "test", "log", "message.");
+```
+</details>
 
 ## Configuration
 `LogService` uses the `app.config` file for its configuration, so make sure that your project includes an `app.config` file. Below, you'll find an example of how to set up the `app.config` file to configure `LogService` in your project.
