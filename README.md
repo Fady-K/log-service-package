@@ -217,7 +217,7 @@ logger.Log("This is a test log message.");
 ```
 </details>
 
-<details open>
+<details>
   <summary><span style="font-size: 1.2em; font-weight: bold; margin-left: 5px;">LogService.Core.LogStrategies</summary>
 
 #### ILogStrategy
