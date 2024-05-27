@@ -181,7 +181,6 @@ logger.Log("This is a test log message.");
 ```
 </details>
 
-<br>
 <details open>
   <summary><span style="font-size: 1.2em; font-weight: bold; margin-left: 5px;">LogService.Core.LogStrategies</summary>
 
@@ -224,7 +223,6 @@ In addition, it provides setters and getters for the `ValidLogFilePath`, `Flushi
 This class can be used as part of the `LoggingService` infrastructure to provide a specific logging behavior based on the accumulation of messages and a defined threshold. It ensures that all log messages are stored and written to the log file, either when the system is closed or when the number of log messages reaches the specified threshold. This strategy can be particularly useful in scenarios where the frequency of log messages is high and immediate writing to the log file for each message could impact system performance. By accumulating messages and writing them in batches, this strategy can help optimize logging operations and system performance.
 </details>
 
-<br>
 <details>
   <summary><span style="font-size: 1.2em; font-weight: bold; margin-left: 5px;">LogService.FileHandling</span></summary>
 
@@ -317,7 +315,6 @@ logFileHandler.Delete();
 ```
 </details>
 
-<br>
 <details>
   <summary><span style="font-size: 1.2em; font-weight: bold; margin-left: 5px;">LogService.Formatting</span></summary>
 
