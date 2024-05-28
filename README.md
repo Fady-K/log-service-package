@@ -49,8 +49,7 @@ There are several ways to install the `LogService` package:
     ```shell
     dotnet add package LogService
     ```
-    Replace `LogService` with the actual name of the package. This command adds a package reference to your project file and then runs `dotnet restore` to install the package[^1^][3].
-
+    
 3. **Manual Download**: You can manually download the package from [this link](https://learn.microsoft.com/en-us/nuget/consume-packages/install-use-packages-nuget-cli).
 
 ## Configuration
