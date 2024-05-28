@@ -39,8 +39,19 @@ Before you start using `LogService` in your project, make sure you have the foll
 By meeting these prerequisites, you'll be ready to integrate and configure `LogService` seamlessly 😊
 
 ## Installation
-1. Download the `LogService` package.
-2. Add a reference to the `LogService.dll` in your project.
+
+There are several ways to install the `LogService` package:
+
+1. **Visual Studio NuGet Package Manager**: If you're using Visual Studio 2022 or any other version, you can download the package directly from the NuGet Package Manager.
+
+2. **Command Line Interface (CLI)**: You can also download the package using the CLI. Here's how you can do it with the .NET CLI:
+
+    ```shell
+    dotnet add package LogService
+    ```
+    Replace `LogService` with the actual name of the package. This command adds a package reference to your project file and then runs `dotnet restore` to install the package[^1^][3].
+
+3. **Manual Download**: You can manually download the package from [this link](https://learn.microsoft.com/en-us/nuget/consume-packages/install-use-packages-nuget-cli).
 
 ## Configuration
 `LogService` uses the `app.config` file for its configuration, so make sure that your project includes an `app.config` file. Below, you'll find an example of how to set up the `app.config` file to configure `LogService` in your project.
