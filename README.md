@@ -1,14 +1,14 @@
 # log-service-package
-`LogService` is a flexible and extensible logging service for .NET applications. It provides different logging strategies and formatting options, making it easy to log messages in a way that suits your application's needs.
+`LogService` is a flexible and extensible logging package for .NET applications. It provides different logging strategies and formatting options, making it easy to log messages in a way that suits your application's needs.
 
 ## Table of Contents
 - [Prerequisites](#prerequisites)
 - [Installation](#installation)
+- [Configuration](#configuration)
 - [Usage](#usage)
 - [Design and Structure](#design-and-structure)
   - [Diagrams](#diagrams)
   - [Components Overview](#components-overview)
-- [Configuration](#configuration)
 - [Deployment](#deployment)
 - [Author](#author)
 - [License](#license)
@@ -39,8 +39,54 @@ Before you start using `LogService` in your project, make sure you have the foll
 By meeting these prerequisites, you'll be ready to integrate and configure `LogService` seamlessly 😊
 
 ## Installation
-1. Download the `LogService` package.
-2. Add a reference to the `LogService.dll` in your project.
+
+There are several ways to install the `LogService` package:
+
+1. **Visual Studio NuGet Package Manager**: If you're using Visual Studio 2022 or any other version, you can download the package directly from the NuGet Package Manager.
+
+2. **Command Line Interface (CLI)**: You can also download the package using the CLI. Here's how you can do it with the .NET CLI:
+
+    ```shell
+    dotnet add package LogService
+    ```
+    
+3. **Manual Download**: You can manually download the package from [this link](https://learn.microsoft.com/en-us/nuget/consume-packages/install-use-packages-nuget-cli).
+
+## Configuration
+`LogService` uses the `app.config` file for its configuration, so make sure that your project includes an `app.config` file. Below, you'll find an example of how to set up the `app.config` file to configure `LogService` in your project.
+
+### Configuration Settings
+In your `app.config` file, make sure you have an `<appSettings>` section. Add the following key-value pairs under it:
+
+1. **`log_file_path`**: This key specifies the path where the log file will be stored. You can customize this path according to your project's requirements. For example:
+
+    ```xml
+    <appSettings>
+        <add key="log_file_path" value="./Log/Log.txt"/>
+    </appSettings>
+    ```
+
+    Make sure to adjust the value to the desired log file path.
+
+2. **`log_file_default_path`**: This key should remain unchanged. It specifies the default log file path. Keep it as follows:
+    ```xml
+    <appSettings>
+        <add key="log_file_default_path" value="./Log/Log.txt"/>
+    </appSettings>
+    ```
+    
+Below is an example of how the `<appSettings>` section in your `app.config` file might look:
+```xml
+<configuration>
+  <appSettings>
+    <!-- Customize the log file path -->
+    <add key="log_file_path" value="./Log/Log.txt"/>
+    <!-- Keep the default log file path unchanged -->
+    <add key="log_file_default_path" value="./Log/Log.txt"/>
+    <!-- Add other configuration settings as needed -->
+  </appSettings>
+</configuration>
+```
 
 ## Usage
 Here's a basic example of how to use `LogService`:
@@ -181,7 +227,7 @@ logger.Log("This is a test log message.");
 ```
 </details>
 
-<details open>
+<details>
   <summary><span style="font-size: 1.2em; font-weight: bold; margin-left: 5px;">LogService.Core.LogStrategies</summary>
 
 #### ILogStrategy
@@ -470,41 +516,6 @@ object formattedMessage = formatter.Formate("This", "is", "a", "test", "log", "m
 ```
 </details>
 
-## Configuration
-`LogService` uses the `app.config` file for its configuration, so make sure that your project includes an `app.config` file. Below, you'll find an example of how to set up the `app.config` file to configure `LogService` in your project.
-
-### Configuration Settings
-In your `app.config` file, make sure you have an `<appSettings>` section. Add the following key-value pairs under it:
-
-1. **`log_file_path`**: This key specifies the path where the log file will be stored. You can customize this path according to your project's requirements. For example:
-
-    ```xml
-    <appSettings>
-        <add key="log_file_path" value="./Log/Log.txt"/>
-    </appSettings>
-    ```
-
-    Make sure to adjust the value to the desired log file path.
-
-2. **`log_file_default_path`**: This key should remain unchanged. It specifies the default log file path. Keep it as follows:
-    ```xml
-    <appSettings>
-        <add key="log_file_default_path" value="./Log/Log.txt"/>
-    </appSettings>
-    ```
-    
-Below is an example of how the `<appSettings>` section in your `app.config` file might look:
-```xml
-<configuration>
-  <appSettings>
-    <!-- Customize the log file path -->
-    <add key="log_file_path" value="./Log/Log.txt"/>
-    <!-- Keep the default log file path unchanged -->
-    <add key="log_file_default_path" value="./Log/Log.txt"/>
-    <!-- Add other configuration settings as needed -->
-  </appSettings>
-</configuration>
-```
 ## Deployment
 ## Author
 ## License
