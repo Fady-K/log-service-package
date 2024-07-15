@@ -11,7 +11,7 @@ namespace LogService.Formatting.Core
 	/// <remarks>
 	/// This class uses the Strategy design pattern to allow different formatting behaviors to be used interchangeably.
 	/// </remarks>
-	/// <seealso cref="IFormateStrategy"/>
+	/// <seealso cref="IFormatStrategy"/>
 	public abstract class AbstractFormatter
 	{
 		/* Fields */
@@ -20,8 +20,8 @@ namespace LogService.Formatting.Core
 		/// The format strategy used by this formatter.
 		/// This determines how log messages are formatted.
 		/// </summary>
-		/// <seealso cref="IFormateStrategy"/>
-		protected IFormateStrategy _formateStrategy;
+		/// <seealso cref="IFormatStrategy"/>
+		protected IFormatStrategy _formateStrategy;
 
 
 		/* Constructors */
@@ -40,7 +40,7 @@ namespace LogService.Formatting.Core
 		/// Initializes a new instance of the AbstractFormatter class with the specified format strategy.
 		/// </summary>
 		/// <param name="formateStrategy">The format strategy to use.</param>
-		public AbstractFormatter(IFormateStrategy formateStrategy)
+		public AbstractFormatter(IFormatStrategy formateStrategy)
 		{
 			_formateStrategy = formateStrategy;
 		}
@@ -51,7 +51,7 @@ namespace LogService.Formatting.Core
 		/// <summary>
 		/// Gets or sets the format strategy used by this formatter.
 		/// </summary>
-		public IFormateStrategy FormateStrategy { get => _formateStrategy; set => _formateStrategy = value; }
+		public IFormatStrategy FormateStrategy { get => _formateStrategy; set => _formateStrategy = value; }
 
 
 		/* Instance methods */

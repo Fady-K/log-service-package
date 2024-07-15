@@ -4,8 +4,8 @@
 	/// The DefaultFormattingStrategy class provides a default implementation of the IFormateStrategy interface.
 	/// It formats log messages by appending each parameter to a string, separated by a specified separator.
 	/// </summary>
-	/// <seealso cref="IFormateStrategy" />
-	public class DefaultFormattingStrategy : IFormateStrategy
+	/// <seealso cref="IFormatStrategy" />
+	public class DefaultFormattingStrategy : IFormatStrategy
 	{
 		/* Insatnce attributes */
 

@@ -9,8 +9,8 @@ namespace LogService.Formatting.FormattingStrategies
 	/// <remarks>
 	/// This class is part of the LogService.Formatting.FormattingStrategies namespace.
 	/// </remarks>
-	/// <seealso cref="IFormateStrategy"/>
-	public class FormattingLogMessageStrategy : IFormateStrategy
+	/// <seealso cref="IFormatStrategy"/>
+	public class FormattingLogMessageStrategy : IFormatStrategy
 	{
 		/* Fields */
 		/// <summary>

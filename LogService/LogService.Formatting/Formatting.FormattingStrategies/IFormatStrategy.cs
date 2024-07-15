@@ -4,7 +4,7 @@
 	/// The IFormateStrategy interface defines the structure for formatting strategies.
 	/// It provides a contract that classes implementing this interface will provide a specific formatting implementation.
 	/// </summary>
-	public interface IFormateStrategy
+	public interface IFormatStrategy
 	{
 		/// <summary>
 		/// Gets or sets the separator character used in the formatting process.
