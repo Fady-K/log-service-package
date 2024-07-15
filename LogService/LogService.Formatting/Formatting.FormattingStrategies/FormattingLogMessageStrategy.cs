@@ -10,7 +10,7 @@ namespace LogService.Formatting.FormattingStrategies
 	/// This class is part of the LogService.Formatting.FormattingStrategies namespace.
 	/// </remarks>
 	/// <seealso cref="IFormateStrategy"/>
-	public class FormatingLogMessageStrategy : IFormateStrategy
+	public class FormattingLogMessageStrategy : IFormateStrategy
 	{
 		/* Fields */
 		/// <summary>
@@ -29,7 +29,7 @@ namespace LogService.Formatting.FormattingStrategies
 		/// Default constructor for the FormatingLogMessageStrategy class.
 		/// Initializes the separator to a space and the _isDataTimeGiven flag to false.
 		/// </summary>
-		public FormatingLogMessageStrategy()
+		public FormattingLogMessageStrategy()
         {
 			// Init fields 
 			_sep = " ";
@@ -41,7 +41,7 @@ namespace LogService.Formatting.FormattingStrategies
 		/// Initializes the separator to the provided value and the _isDataTimeGiven flag to false.
 		/// </summary>
 		/// <param name="sep">The separator to be used in the formatting process.</param>
-		public FormatingLogMessageStrategy(string sep)
+		public FormattingLogMessageStrategy(string sep)
         {
 			// Init fields 
 			_sep = sep;
