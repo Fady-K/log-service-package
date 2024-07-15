@@ -110,7 +110,7 @@ namespace LogService.Core
 		/// Gets the single instance of the LoggingService class.
 		/// </summary>
 		/// <returns>The single instance of the LoggingService class.</returns>
-		public static LoggingService GetIntance()
+		public static LoggingService GetInstance()
 		{
 			if (_instance is null)
 			{
