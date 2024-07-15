@@ -141,7 +141,7 @@ namespace LogService.Core
 				_fileHandler = new LogFileHandler(_logFilePath, _defaultLogFilePath);
 
 				// Init Logger with valid path
-				_logger = new Logger(new InstanteMessageLoggingStrategy(_fileHandler.FileValidPath), new LogMessageFormatter());
+				_logger = new Logger(new InstantMessageLoggingStrategy(_fileHandler.FileValidPath), new LogMessageFormatter());
 			}
 			catch (Exception ex)
 			{
