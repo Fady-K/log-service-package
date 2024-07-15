@@ -14,7 +14,7 @@ namespace LogService.Formatting.Core
 		/// </summary>
 		public LogMessageFormatter()
 		{
-			_formateStrategy = new FormatingLogMessageStrategy();
+			_formateStrategy = new FormattingLogMessageStrategy();
 		}
 	}
 }
