@@ -52,6 +52,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="LogService\LogService.Core\AbstractLogger.cs" />
+    <Compile Include="LogService\LogService.Core\LogFilePathLoadingStrategies\AbstractLogFilePathLoadingStrategy.cs" />
+    <Compile Include="LogService\LogService.Core\LogFilePathLoadingStrategies\LoadLogFilePathFromXMLAppConfig.cs" />
     <Compile Include="LogService\LogService.Core\Logger.cs" />
     <Compile Include="LogService\LogService.Core\LoggingService.cs" />
     <Compile Include="LogService\LogService.Core\LogStrategies\AccumulativeMessageBasedThresholdLoggingStrategy.cs" />
