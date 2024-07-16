@@ -1,4 +1,5 @@
-﻿using System.Configuration;
+﻿using System;
+using System.Configuration;
 using System.IO;
 
 namespace LogService.LogService.LogService.Core.LogFilePathLoadingStrategies
@@ -63,7 +64,10 @@ namespace LogService.LogService.LogService.Core.LogFilePathLoadingStrategies
 		protected override void LoadLogFilePath(string configFilePath, string key)
 		{
 			// Retrieve the log file path from appSettings
-			__logFilePath = GetConfiguration(configFilePath).AppSettings.Settings[key]?.Value ?? "./Log/Log.txt";
+			string path = GetConfiguration(configFilePath).AppSettings.Settings[key]?.Value ?? "./Log/Log.txt";
+
+			// Resolve any Environment variables in the path.
+			__logFilePath = Environment.ExpandEnvironmentVariables(path);
 		}
 
 		/// <summary>
@@ -74,7 +78,10 @@ namespace LogService.LogService.LogService.Core.LogFilePathLoadingStrategies
 		protected override void LoadDefaultLogFilePath(string configFilePath, string key)
 		{
 			// Retrieve the log file path from appSettings
-			__defaultLogFilePath = GetConfiguration(configFilePath).AppSettings.Settings[key]?.Value ?? "./Log/Log.txt";
+			string path = GetConfiguration(configFilePath).AppSettings.Settings[key]?.Value ?? "./Log/Log.txt";
+
+			// Resolve any Environment variables in the path.
+			__defaultLogFilePath = Environment.ExpandEnvironmentVariables(path);
 		}
 	}
 }
