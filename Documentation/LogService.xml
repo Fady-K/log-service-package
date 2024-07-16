@@ -92,14 +92,9 @@
             The single instance of the LoggingService class.
             </summary>
         </member>
-        <member name="F:LogService.Core.LoggingService._logFilePath">
+        <member name="F:LogService.Core.LoggingService._logFilePathLoadingStrategy">
             <summary>
-            The path of the log file.
-            </summary>
-        </member>
-        <member name="F:LogService.Core.LoggingService._defaultLogFilePath">
-            <summary>
-            The default path of the log file.
+            
             </summary>
         </member>
         <member name="F:LogService.Core.LoggingService._logger">
@@ -118,6 +113,12 @@
             Initializes a new instance of the LoggingService class and sets up the logger and file handler.
             </summary>
         </member>
+        <member name="M:LogService.Core.LoggingService.#ctor(LogService.Core.AbstractLogFilePathLoaddingStrategy)">
+            <summary>
+            Paramerized constructor.
+            Initializes a new instance of the LoggingService class and sets up the logger and file handler.
+            </summary>
+        </member>
         <member name="P:LogService.Core.LoggingService.LogFilePath">
             <summary>
             Gets the path of the log file.
@@ -126,6 +127,11 @@
         <member name="P:LogService.Core.LoggingService.DefaultLogFilePath">
             <summary>
             Gets the default path of the log file.
+            </summary>
+        </member>
+        <member name="P:LogService.Core.LoggingService.LogFilePathLoadingStrategy">
+            <summary>
+            Get and Sets the loading mechansism for log file path.
             </summary>
         </member>
         <member name="P:LogService.Core.LoggingService.Logger">
@@ -145,13 +151,19 @@
             <param name="messageComponents">The objects to log.</param>
             <exception cref="T:System.Exception">Throws an exception if an error occurs while logging the message.</exception>
         </member>
-        <member name="M:LogService.Core.LoggingService.GetIntance">
+        <member name="M:LogService.Core.LoggingService.GetInstance">
             <summary>
             Gets the single instance of the LoggingService class.
             </summary>
             <returns>The single instance of the LoggingService class.</returns>
         </member>
-        <member name="M:LogService.Core.LoggingService.Initialize">
+        <member name="M:LogService.Core.LoggingService.InitInstanceWithConfig(LogService.Core.AbstractLogFilePathLoaddingStrategy)">
+            <summary>
+            
+            </summary>
+            <param name="logFilePathLoadingStrategy"></param>
+        </member>
+        <member name="M:LogService.Core.LoggingService.Initialize(LogService.Core.AbstractLogFilePathLoaddingStrategy)">
             <summary>
             Initializes the LoggingService instance.
             </summary>
@@ -235,7 +247,7 @@
             The ILogStartegy Interface that provides an interface for different startegies.
             <remarks>This ILogStrategy is implemented by differnet concrete startegies</remarks>
             <seealso cref="T:LogService.Core.LogStrategies.AccumulativeMessageBasedThresholdLoggingStrategy"/>
-            <seealso cref="T:LogService.Core.LogStrategies.InstanteMessageLoggingStrategy"/>
+            <seealso cref="T:LogService.Core.LogStrategies.InstantMessageLoggingStrategy"/>
             </summary>
         </member>
         <member name="M:LogService.Core.LogStrategies.ILogStrategy.Log(System.String)">
@@ -249,32 +261,32 @@
             Property for validLogFilePath.
             </summary>
         </member>
-        <member name="T:LogService.Core.LogStrategies.InstanteMessageLoggingStrategy">
+        <member name="T:LogService.Core.LogStrategies.InstantMessageLoggingStrategy">
             <summary>
             The InstantMessageLoggingStartegy.
             <remarks>This startegy implements the ILogStrategy interface, and takes log message (log implemeneted) and then log it instantly.</remarks>
             <seealso cref="T:LogService.Core.LogStrategies.ILogStrategy"/>
-            <seealso cref="M:LogService.Core.LogStrategies.InstanteMessageLoggingStrategy.Log(System.String)"/>
+            <seealso cref="M:LogService.Core.LogStrategies.InstantMessageLoggingStrategy.Log(System.String)"/>
             </summary>
         </member>
-        <member name="F:LogService.Core.LogStrategies.InstanteMessageLoggingStrategy._validLogFilePath">
+        <member name="F:LogService.Core.LogStrategies.InstantMessageLoggingStrategy._validLogFilePath">
             <summary>
             The valid log file path
             </summary>
         </member>
-        <member name="M:LogService.Core.LogStrategies.InstanteMessageLoggingStrategy.#ctor(System.String)">
+        <member name="M:LogService.Core.LogStrategies.InstantMessageLoggingStrategy.#ctor(System.String)">
             <summary>
             Parametrized constructor of InstantMessageLoggingStrategy.
             </summary>
             <remarks>Takes validLogFilePath</remarks>
             <param name="validLogFilePath">Valid path of the log file</param>
         </member>
-        <member name="P:LogService.Core.LogStrategies.InstanteMessageLoggingStrategy.ValidLogFilePath">
+        <member name="P:LogService.Core.LogStrategies.InstantMessageLoggingStrategy.ValidLogFilePath">
             <summary>
             Property for validLogFilePath.
             </summary>
         </member>
-        <member name="M:LogService.Core.LogStrategies.InstanteMessageLoggingStrategy.Log(System.String)">
+        <member name="M:LogService.Core.LogStrategies.InstantMessageLoggingStrategy.Log(System.String)">
             <summary>
             Takes a message to log it.
             </summary>
@@ -398,14 +410,14 @@
             <remarks>
             This class uses the Strategy design pattern to allow different formatting behaviors to be used interchangeably.
             </remarks>
-            <seealso cref="T:LogService.Formatting.FormattingStrategies.IFormateStrategy"/>
+            <seealso cref="T:LogService.Formatting.FormattingStrategies.IFormatStrategy"/>
         </member>
         <member name="F:LogService.Formatting.Core.AbstractFormatter._formateStrategy">
             <summary>
             The format strategy used by this formatter.
             This determines how log messages are formatted.
             </summary>
-            <seealso cref="T:LogService.Formatting.FormattingStrategies.IFormateStrategy"/>
+            <seealso cref="T:LogService.Formatting.FormattingStrategies.IFormatStrategy"/>
         </member>
         <member name="M:LogService.Formatting.Core.AbstractFormatter.#ctor">
             <summary>
@@ -413,7 +425,7 @@
             Initializes a new instance of the AbstractFormatter class with a default format strategy.
             </summary>
         </member>
-        <member name="M:LogService.Formatting.Core.AbstractFormatter.#ctor(LogService.Formatting.FormattingStrategies.IFormateStrategy)">
+        <member name="M:LogService.Formatting.Core.AbstractFormatter.#ctor(LogService.Formatting.FormattingStrategies.IFormatStrategy)">
             <summary>
             Constructor with parameters.
             Initializes a new instance of the AbstractFormatter class with the specified format strategy.
@@ -450,7 +462,7 @@
             The DefaultFormattingStrategy class provides a default implementation of the IFormateStrategy interface.
             It formats log messages by appending each parameter to a string, separated by a specified separator.
             </summary>
-            <seealso cref="T:LogService.Formatting.FormattingStrategies.IFormateStrategy" />
+            <seealso cref="T:LogService.Formatting.FormattingStrategies.IFormatStrategy" />
         </member>
         <member name="F:LogService.Formatting.FormattingStrategies.DefaultFormattingStrategy._sep">
             <summary>
@@ -475,7 +487,7 @@
             <param name="param">An array of objects that contains zero or more objects to format.</param>
             <returns>Returns a formatted string.</returns>
         </member>
-        <member name="T:LogService.Formatting.FormattingStrategies.FormatingLogMessageStrategy">
+        <member name="T:LogService.Formatting.FormattingStrategies.FormattingLogMessageStrategy">
             <summary>
             The FormatingLogMessageStrategy class provides an implementation of the IFormateStrategy interface.
             It formats log messages by appending each parameter to a string, separated by a specified separator.
@@ -483,62 +495,62 @@
             <remarks>
             This class is part of the LogService.Formatting.FormattingStrategies namespace.
             </remarks>
-            <seealso cref="T:LogService.Formatting.FormattingStrategies.IFormateStrategy"/>
+            <seealso cref="T:LogService.Formatting.FormattingStrategies.IFormatStrategy"/>
         </member>
-        <member name="F:LogService.Formatting.FormattingStrategies.FormatingLogMessageStrategy._sep">
+        <member name="F:LogService.Formatting.FormattingStrategies.FormattingLogMessageStrategy._sep">
             <summary>
             The separator used in the formatting process.
             </summary>
         </member>
-        <member name="F:LogService.Formatting.FormattingStrategies.FormatingLogMessageStrategy._isDataTimeGiven">
+        <member name="F:LogService.Formatting.FormattingStrategies.FormattingLogMessageStrategy._isDataTimeGiven">
             <summary>
             A flag indicating whether a DateTime object is given in the parameters.
             </summary>
         </member>
-        <member name="M:LogService.Formatting.FormattingStrategies.FormatingLogMessageStrategy.#ctor">
+        <member name="M:LogService.Formatting.FormattingStrategies.FormattingLogMessageStrategy.#ctor">
             <summary>
             Default constructor for the FormatingLogMessageStrategy class.
             Initializes the separator to a space and the _isDataTimeGiven flag to false.
             </summary>
         </member>
-        <member name="M:LogService.Formatting.FormattingStrategies.FormatingLogMessageStrategy.#ctor(System.String)">
+        <member name="M:LogService.Formatting.FormattingStrategies.FormattingLogMessageStrategy.#ctor(System.String)">
             <summary>
             Constructor for the FormatingLogMessageStrategy class that allows specifying a custom separator.
             Initializes the separator to the provided value and the _isDataTimeGiven flag to false.
             </summary>
             <param name="sep">The separator to be used in the formatting process.</param>
         </member>
-        <member name="P:LogService.Formatting.FormattingStrategies.FormatingLogMessageStrategy.Sep">
+        <member name="P:LogService.Formatting.FormattingStrategies.FormattingLogMessageStrategy.Sep">
             <summary>
             Gets or sets the separator used in the formatting process.
             </summary>
         </member>
-        <member name="M:LogService.Formatting.FormattingStrategies.FormatingLogMessageStrategy.Formate(System.Object[])">
+        <member name="M:LogService.Formatting.FormattingStrategies.FormattingLogMessageStrategy.Formate(System.Object[])">
             <summary>
             Formats the input parameters into a specific format.
             </summary>
             <param name="param">An array of objects that contains zero or more objects to format.</param>
             <returns>Returns a formatted string.</returns>
         </member>
-        <member name="M:LogService.Formatting.FormattingStrategies.FormatingLogMessageStrategy.FormateDateTime(System.DateTime)">
+        <member name="M:LogService.Formatting.FormattingStrategies.FormattingLogMessageStrategy.FormateDateTime(System.DateTime)">
             <summary>
             Formats a DateTime object into a specific string format.
             </summary>
             <param name="dateTime">The DateTime object to format.</param>
             <returns>Returns a string representation of the DateTime object.</returns>
         </member>
-        <member name="T:LogService.Formatting.FormattingStrategies.IFormateStrategy">
+        <member name="T:LogService.Formatting.FormattingStrategies.IFormatStrategy">
             <summary>
             The IFormateStrategy interface defines the structure for formatting strategies.
             It provides a contract that classes implementing this interface will provide a specific formatting implementation.
             </summary>
         </member>
-        <member name="P:LogService.Formatting.FormattingStrategies.IFormateStrategy.Sep">
+        <member name="P:LogService.Formatting.FormattingStrategies.IFormatStrategy.Sep">
             <summary>
             Gets or sets the separator character used in the formatting process.
             </summary>
         </member>
-        <member name="M:LogService.Formatting.FormattingStrategies.IFormateStrategy.Formate(System.Object[])">
+        <member name="M:LogService.Formatting.FormattingStrategies.IFormatStrategy.Formate(System.Object[])">
             <summary>
             Formats the input parameters into a specific format.
             </summary>
