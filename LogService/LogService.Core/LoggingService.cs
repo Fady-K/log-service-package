@@ -1,8 +1,9 @@
 ﻿using System;
-using System.Configuration;
+using System.IO;
 using LogService.Core.LogStrategies;
 using LogService.FileHandling;
 using LogService.Formatting.Core;
+using LogService.LogService.LogService.Core.LogFilePathLoadingStrategies;
 
 namespace LogService.Core
 {
@@ -28,14 +29,9 @@ namespace LogService.Core
 		/* Instance attributes */
 
 		/// <summary>
-		/// The path of the log file.
+		/// The strategy used for loading the log file path.
 		/// </summary>
-		protected string _logFilePath;
-
-		/// <summary>
-		/// The default path of the log file.
-		/// </summary>
-		protected string _defaultLogFilePath;
+		protected AbstractLogFilePathLoadingStrategy _logFilePathLoadingStrategy;
 
 		/// <summary>
 		/// The logger used by this service.
@@ -60,18 +56,34 @@ namespace LogService.Core
 			Initialize();
 		}
 
+		/// <summary>
+		/// Paramerized constructor.
+		/// Initializes a new instance of the LoggingService class and sets up the logger and file handler.
+		/// </summary>
+		public LoggingService(AbstractLogFilePathLoadingStrategy logFilePathLoadingStrategy)
+		{
+			// Init instance attributes 
+			Initialize(logFilePathLoadingStrategy);
+		}
+
 
 		/* Setters and getters */
 
 		/// <summary>
 		/// Gets the path of the log file.
 		/// </summary>
-		public string LogFilePath { get => _logFilePath; }
+		public string LogFilePath { get => _logFilePathLoadingStrategy.LogFilePath; }
 
 		/// <summary>
 		/// Gets the default path of the log file.
 		/// </summary>
-		public string DefaultLogFilePath { get => _defaultLogFilePath; }
+		public string DefaultLogFilePath { get => _logFilePathLoadingStrategy.DefaultLogFilePath; }
+
+
+		/// <summary>
+		/// Get and Sets the loading mechansism for log file path.
+		/// </summary>
+		public AbstractLogFilePathLoadingStrategy LogFilePathLoadingStrategy { get => _logFilePathLoadingStrategy; set => _logFilePathLoadingStrategy = value; }
 
 		/// <summary>
 		/// Gets or sets the logger used by this service.
@@ -123,22 +135,32 @@ namespace LogService.Core
 		}
 
 
+		/// <summary>
+		/// Initializes the single instance of the LoggingService class with a specified log file path loading strategy.
+		/// </summary>
+		/// <param name="logFilePathLoadingStrategy">The log file path loading strategy to be used by the LoggingService instance.</param>
+		public static void InitInstanceWithConfig(AbstractLogFilePathLoadingStrategy logFilePathLoadingStrategy)
+		{
+			// Init it
+			_instance = new LoggingService(logFilePathLoadingStrategy);
+		}
+
+
 		//////////////////////////////////////// Helper methods ////////////////////////////////
 
 		/// <summary>
 		/// Initializes the LoggingService instance.
 		/// </summary>
 		/// <exception cref="Exception">Throws an exception if an error occurs while initializing the instance.</exception>
-		protected void Initialize()
+		protected void Initialize(AbstractLogFilePathLoadingStrategy logFilePathLoadingStrategy =null)
 		{
 			try
 			{
-				// Load paths from app.config
-				_logFilePath = ConfigurationManager.AppSettings["log_file_path"];
-				_defaultLogFilePath = ConfigurationManager.AppSettings["log_file_default_path"];
+				// Init logFilePathLoadingStrateg
+				_logFilePathLoadingStrategy = logFilePathLoadingStrategy ?? new LoadLogFilePathFromXMLAppConfig();
 
 				// Init log file handler with paths 
-				_fileHandler = new LogFileHandler(_logFilePath, _defaultLogFilePath);
+				_fileHandler = new LogFileHandler(LogFilePath, DefaultLogFilePath);
 
 				// Init Logger with valid path
 				_logger = new Logger(new InstantMessageLoggingStrategy(_fileHandler.FileValidPath), new LogMessageFormatter());
